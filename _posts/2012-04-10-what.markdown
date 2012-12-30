@@ -46,7 +46,7 @@ Really, though, it's a little more complicated than that. The best way to get fu
 
 {% highlight html %}
 <section class="content">
-	{% literal  %}{{ content }}{% literal %}
+	{% literal  %}{{ content }}{% endliteral  %}
 </section>
 {% endhighlight %}
 
