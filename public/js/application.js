@@ -21,15 +21,7 @@ jQuery(document).ready(function() {
 															// If you change the class of the post container,
 															// you must change it here!!!
 			
-			DISQUS.reset({
-			  reload: true,
-			  config: function () {  
-			    this.page.identifier = State.url;  
-			    this.page.url = State.url;
-			  }
-			});
 
-			
 			_gaq.push(['_trackPageview', State.url]);	// This updates Google Analytics with a visit to the new page.
 														// If you don't use Google Analytics, you can safety comment or
 														// remove that line.
