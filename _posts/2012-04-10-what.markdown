@@ -1,7 +1,7 @@
 ---
 layout: post
 title: What is This Monstrosity?
-summary: Jekyll, despite being a static site generator, is very HTML5 History- and AJAX-friendly. The key lies in [History.JS](https://github.com/balupton/history.js), built by Benjamin Arthur Lupton, and a small piece of Javascript.
+summary: Jekyll, despite being a static site generator, is very HTML5 History- and AJAX-friendly. The key lies in [History.JS](https://github.com/balupton/history.js), built by Benjamin Arthur Lupton, and a small piece of Javascript.I'm adding some extra content to push the footer down I'm adding some extra content to push the footer down I'm adding some extra content to push the footer down I'm adding some extra content to push the footer down I'm adding some extra content to push the footer down I'm adding some extra content to push the footer down I'm adding some extra content to push the footer down I'm adding some extra content to push the footer down I'm adding some extra content to push the footer down I'm adding some extra content to push the footer down
 ---
 
 Jekyll, despite being a static site generator, is very HTML5 History- and AJAX-friendly. The key lies in [History.JS](https://github.com/balupton/history.js), built by Benjamin Arthur Lupton, and a small piece of Javascript.
@@ -46,7 +46,7 @@ Really, though, it's a little more complicated than that. The best way to get fu
 
 {% highlight html %}
 <section class="content">
-	{% literal  %}{{ content }}{% endliteral  %}
+	{{ content }}
 </section>
 {% endhighlight %}
 
