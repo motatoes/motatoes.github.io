@@ -36,7 +36,7 @@ var Person = new Class({
 ....//methods and attributes
 
 });
-</pre>
+{% endhighlight %}
 
 <p>
 But I was right, some Javascript frameworks do support this by default.MooTools is one of them.  So if you're looking for a quick and dirty way to write object-oriented programs in Javascript , <a href="http://mootools.net" target="_blank">mootools</a> is the way to go. Much talking, time for some juice ;)
@@ -67,7 +67,7 @@ var Person = new Class ({
 //creating an object
 
 var p1 = new Person();
-</pre>
+{% endhighlight %}
 
 <h3>Adding default constructor</h3>
 <p>
@@ -88,7 +88,7 @@ var Person = new Class ({
   }
 
 });
-</pre>
+{% endhighlight %}
 
 <h3>Constructor overloading</h3>
 <p>
@@ -118,11 +118,11 @@ else
 }
 
 });
-</pre>
+{% endhighlight %}
 
 {% highlight javascript %}
 I can't think of a cleaner way of doing this, so if someone can, please inform me.
-</pre>
+{% endhighlight %}
 
 
 <h3>Inheritance</h3>
@@ -142,7 +142,7 @@ initialize: function(name,age,gpa)
    this.gpa = gpa;
 
 });
-</pre>
+{% endhighlight %}
 
 
 <h3>Adding other functions</h3>
@@ -167,7 +167,7 @@ addToGpa: function(v) {
    this.gpa += v;
   }
 });
-</pre>
+{% endhighlight %}
 
 <h3>More details</h3>
 <p>
