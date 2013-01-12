@@ -29,7 +29,7 @@ After reading parts of chapter 8 of<em><a href="http://eloquentjavascript.net/">
 </p>
 
 
-<pre>
+{% highlight javascript %}
 
 var Person = new Class({
 
@@ -57,7 +57,7 @@ One can define a new class as follows
 </p>
 
 
-<pre>
+{% highlight javascript %}
 var Person = new Class ({
 
 //rest of class
@@ -74,7 +74,7 @@ var p1 = new Person();
 As follows:
 </p>
 
-<pre>
+{% highlight javascript %}
 var Person = new Class ({
 
   //constructor
@@ -95,7 +95,7 @@ var Person = new Class ({
 Overloading is a JS thing, not mootools:
 </p>
 
-<pre>
+{% highlight javascript %}
 var Person = new Class ({
 //constructor
 initialize: function(name, age) {
@@ -120,7 +120,7 @@ else
 });
 </pre>
 
-<pre>
+{% highlight javascript %}
 I can't think of a cleaner way of doing this, so if someone can, please inform me.
 </pre>
 
@@ -130,7 +130,7 @@ I can't think of a cleaner way of doing this, so if someone can, please inform m
 Let's say we want to inherit the class person by another Class, <em>Student</em>. We use the keyword <em><strong>Extends</strong>, </em>which "should be the first property in a class definition."
 </p>
 
-<pre>
+{% highlight javascript %}
 var Student = new Class({
 
 Extends: Person,
@@ -151,7 +151,7 @@ Adding other methods (functions to the class) is rather simple:
 </p>
 
 
-<pre>
+{% highlight javascript %}
 var Student = new Class({
 
 Extends: Person,
