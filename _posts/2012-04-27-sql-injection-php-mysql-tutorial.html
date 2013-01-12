@@ -57,7 +57,7 @@ For obvious reasons, I will not mention the vulnerable websites, but I will take
 While coding<em> dynamic</em> websites, you usually pull out content from a database. A commonly used database is mysql. So you can imagine a php script like this:
 </p>
 
-<pre>
+{% highlight php %}
 //get the product id
 
 $id = $_GET['id'];
@@ -75,7 +75,7 @@ echo &quot;Product name:&quot; . $row['name'];
 echo &quot;Product description: &quot;. $row['desc'] ;
 
 }
-</pre>
+{% endhighlight %}
 
 <p>
 okay so this query takes the <strong>id </strong>as an input from a user and uses it to validate user input. In this case, the web url will look something like this:
@@ -116,6 +116,8 @@ Okay now let's say we wanted to get rid of that error. Pretty easy, let's modify
 We didn't close the last colon because the php query will close it for us ;)
 </p>
 <p>
+
+  
 <strong>SELECT * FROM  products WHERE id=' 9' or <span style="text-decoration: underline;">'1'='1'</span></strong>
 </p>
 <p>
