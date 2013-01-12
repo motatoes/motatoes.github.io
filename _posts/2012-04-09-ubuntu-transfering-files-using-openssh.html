@@ -33,9 +33,9 @@ The first step is of course, connecting to the remote host. Go ahead and type th
 </p>
 
 
-<pre>
+{% highlight bash %}
 ssh USER@IP_ADDR_OR_HOSTNAME
-</pre>
+{% endhighlight %}
 
 <p>and ofcourse, enter the password when prompted.<a href="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh11.png"><img class="wp-image-215 aligncenter" title="ssh1" src="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh11.png" alt="" width="605"  /></a></p>
 
@@ -50,9 +50,9 @@ ssh USER@IP_ADDR_OR_HOSTNAME
 Now you should probably set up a local SSH server if you don't already have one. You can use the openSSH-server. on your same local ubuntu machine, type:
 </p>
 
-<pre>
+{% highlight bash %}
 sudo apt-get install openssh-server
-</pre>
+{% endhighlight %}
 
 <p><a href="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh3.png"><img class="wp-image-212 aligncenter" title="ssh3" src="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh3.png" alt="" width="590"  /></a></p>
 
@@ -61,9 +61,9 @@ sudo apt-get install openssh-server
 Okay this is where it kind of gets confusing. To transfer files, you use the <strong>scp command.</strong> The syntax of the command is:
 </p>
 
-<pre>
+{% highlight bash %}
 scp  USER@IP/HOSTNAME:SOURCE_FILE   USER@IP:DESTINATION_FILE
-</pre>
+{% endhighlight %}
 
 
 <p>
@@ -74,9 +74,9 @@ The user@IP part is optional, if omitted,  openssh will consider it as the "loc
 Let's say I want to transfer a file To the machine i'm sitting at now:
 </p>
 
-<pre>
+{% highlight bash %}
 scp Cookies.binarycookies mohammed@192.168.1.2:Desktop/
-</pre>
+{% endhighlight %}
 
 <p><a href="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh4.png"><img class="wp-image-213 aligncenter" title="ssh4" src="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh4.png" alt="" width="607"  /></a></p>
 
@@ -92,9 +92,9 @@ For the second argument, I mentioned, user@IP:PATH . This path is relative to th
 NOW, let's try doing the apposite: Transfer a file from my machine to the SSH'ed-into machine ;)
 </p>
 
-<pre>
+{% highlight bash %}
 scp  mohammed@192.168.1.2:Desktop/test/a.jpg Cookies/
-</pre>
+{% endhighlight %}
 
 <p><a href="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh5.png"><img class="wp-image-214" title="SSH5" src="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh5.png" alt="" width="606"  /></a></p>
 I hope you get the picture now! If not, please comment bellow. You can find more information <a href="http://pelican.rsvs.ulaval.ca/mediawiki/index.php/Remote_login_and_file_transfer_with_OpenSSH#File_transfer">here</a>

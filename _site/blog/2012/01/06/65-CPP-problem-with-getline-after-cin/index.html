@@ -73,23 +73,22 @@ When people get bored, they usually do something fun. When I get bored, I write 
 So yesterday, I was working on an assignment which was a C++ program. I had code similar to this:
 </p>
 
-<pre>
- #include&lt;iostream&gt;
- using namespace std;
+<div class="highlight"><pre><code class="cpp"><span class="cp">#include&lt;iostream&gt;</span>
+ <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-int main()
- {
- char x[10];
- int y;
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="kt">char</span> <span class="n">x</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
 
-cout&lt;&lt;&quot;Enter a number&quot;;
- cin&gt;&gt;y;
- cout&lt;&lt;&quot;Enter a string&quot;;
- cin.getline(x,9);
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Enter a number&quot;</span><span class="p">;</span>
+	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="p">;</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Enter a string&quot;</span><span class="p">;</span>
+	<span class="n">cin</span><span class="p">.</span><span class="n">getline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span>
 
-system(&quot;PAUSE&quot;);
- }
-</pre>
+	<span class="n">system</span><span class="p">(</span><span class="s">&quot;PAUSE&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
 
 <p>
 Okay, so its pretty simple. I'm asking for a integer from the keyboard, and then i need a char[]. I'm using "getline" because I wanted to count spaces as well.
@@ -128,24 +127,23 @@ The solution is well presented on <a title="sol" href="http://mathbits.com/mathb
 One solution is to use cin.ignore(100,'\n'). This ignores up to a 100 characters in the stream, until it meets a "\n" .
 </p>
 
-<pre>
- #include&lt;iostream&gt;
- using namespace std;
+<div class="highlight"><pre><code class="cpp"><span class="cp">#include&lt;iostream&gt;</span>
+ <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-int main()
- {
- char x[10];
- int y;
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="kt">char</span> <span class="n">x</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+	<span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
 
-cout&lt;&lt;&quot;Enter a number: &quot;;
- cin&gt;&gt;y;
- cout&lt;&lt;&quot;Enter a string: &quot;;
- cin.ignore(100,'\n');//!!!!!!!!!!!!!!!!!!!//
- cin.getline(x,9);
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Enter a number: &quot;</span><span class="p">;</span>
+	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="p">;</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Enter a string: &quot;</span><span class="p">;</span>
+	<span class="n">cin</span><span class="p">.</span><span class="n">ignore</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span><span class="c1">//!!!!!!!!!!!!!!!!!!!//</span>
+	<span class="n">cin</span><span class="p">.</span><span class="n">getline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span>
 
-system(&quot;PAUSE&quot;);
- }
-</pre>
+	<span class="n">system</span><span class="p">(</span><span class="s">&quot;PAUSE&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 <h5>Plan B</h5>
@@ -153,25 +151,24 @@ system(&quot;PAUSE&quot;);
 Another solution is to use a dummy string variable to absorb the nasty \n :
 </p>
 
-<pre>
- #include&lt;iostream&gt;
- using namespace std;
+<div class="highlight"><pre><code class="cpp"><span class="cp">#include&lt;iostream&gt;;</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 
-int main()
- {
- char x[10];
- char dummy[2]; //!!!!!!!!!!!!!!!!!!!!!!//
- int y;
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+	<span class="kt">char</span> <span class="n">x</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+	<span class="kt">char</span> <span class="n">dummy</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">//!!!!!!!!!!!!!!!!!!!!!!//</span>
+	<span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
 
-cout&lt;&lt;&quot;Enter a number: &quot;;
- cin&gt;&gt;y;
- cout&lt;&lt;&quot;Enter a string: &quot;;
- cin.getline(dummy,1); //!!!!!!!!!!!!!!!!!!!!//
- cin.getline(x,9);
- cout&lt;&lt;x;
- system(&quot;PAUSE&quot;);
- }
-</pre>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Enter a number: &quot;</span><span class="p">;</span>
+	<span class="n">cin</span><span class="o">&gt;&gt;</span><span class="n">y</span><span class="p">;</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="s">&quot;Enter a string: &quot;</span><span class="p">;</span>
+	<span class="n">cin</span><span class="p">.</span><span class="n">getline</span><span class="p">(</span><span class="n">dummy</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c1">//!!!!!!!!!!!!!!!!!!!!//</span>
+	<span class="n">cin</span><span class="p">.</span><span class="n">getline</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span>
+	<span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">x</span><span class="p">;</span>
+	<span class="n">system</span><span class="p">(</span><span class="s">&quot;PAUSE&quot;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="s">&quot;);</span>
+<span class="p">}</span>
+</code></pre></div>
 
 <p>
 Well done! You have now managed to overcome the \n getline problem.
