@@ -57,7 +57,8 @@ For obvious reasons, I will not mention the vulnerable websites, but I will take
 While coding<em> dynamic</em> websites, you usually pull out content from a database. A commonly used database is mysql. So you can imagine a php script like this:
 </p>
 
-{% highlight php %}
+{% highlight PHP %}
+<?PHP
 //get the product id
 
 $id = $_GET['id'];
@@ -117,7 +118,7 @@ We didn't close the last colon because the php query will close it for us ;)
 </p>
 <p>
 
-  
+
 <strong>SELECT * FROM  products WHERE id=' 9' or <span style="text-decoration: underline;">'1'='1'</span></strong>
 </p>
 <p>
