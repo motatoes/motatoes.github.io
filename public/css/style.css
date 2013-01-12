@@ -69,12 +69,6 @@ input:invalid, textarea:invalid { background-color: #f0dddd; }
 table { border-collapse: collapse; border-spacing: 0; }
 td { vertical-align: top; }
 
-.highlight {
-	width: 100%;
-	overflow: auto;
-	background-color: #f0f0f0;
-	padding: 10px;
-}
 /* ===================================================
     Initializr styles
     http://verekia.com/initializr/responsive-template
