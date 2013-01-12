@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width" />
 
 	
-	<title>Mohammed Habib - in.sane</title>
+	<title>Sublime text 2 current path (plugin development) | Mohammed Habib - in.sane</title>
 	
 	<meta name="author" content="Ryan Tell">
 	<meta name="description" content="Ryan Tell is an experimental electronic musician from Milwaukee, Wisconsin.">
@@ -63,10 +63,30 @@
 			<div id="main-container">
 				<div id="main" class="wrapper clearfix">
 				<div class="column-12 post">
-	<h1>One day ...</h1>
-	<p>When i'm less lazy, i'll add some of my projects in here.</p>
-</div>
+	<h1><a href="/blog/2012/12/12/sublime-plugin-get-your-current-path" title="Sublime text 2 current path (plugin development)">Sublime text 2 current path (plugin development)</a></h1>
+	<p>
+Just a quick tip to find your sublime text 2 current path. If you ever find yourself writing a sublime plugin and want to get the current path, DO NOT use <em><strong>os.</strong><strong>getcwd</strong></em><strong> </strong>, it just doesn't work, and returns your system32 windows path. Instead, you should use the following method supplied by the sublime api to get the path to the packages folder, and then append to it the name of your package, and you're good to go:
+</p>
 
+<pre>
+import sublime
+#############
+dir = sublime.packages_path()
+sphinxdir = os.path.join(dir, 'NAME_OF_YOUR_PACKAGE')
+</pre>
+
+
+<p>
+hope this spares some hours of frustration.
+</p>
+
+	<p class="back-arrow"><a href="/">&larr; Back</a></p>
+
+
+
+
+
+</div>
 				</div> <!-- #main -->
 			</div> <!-- #main-container -->
 

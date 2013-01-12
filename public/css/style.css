@@ -14,9 +14,16 @@ body, button, input, select, textarea { font-family: sans-serif; color: #222; }
 ::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
 ::selection { background: #fe57a1; color: #fff; text-shadow: none; }
 
-a { color: #505050;text-decoration: none; }
-a:visited { color: #551a8b; }
-a:hover { color: #06e; }
+a { color: #ba0055;text-decoration: none;
+	transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+}
+
+a:visited { color: #ba0005; }
+a:hover { color: #06e;text-decoration: none }
 a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }
 
@@ -26,6 +33,7 @@ blockquote { margin: 1em 40px; }
 dfn { font-style: italic; }
 hr { display: block; height: 1px; border: 0; border-top: 1px solid #ccc; margin: 1em 0; padding: 0; }
 ins { background: #ff9; color: #000; text-decoration: none; }
+  img { max-width: 100% !important; }
 mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
 pre, code, kbd, samp { font-family: monospace, monospace; _font-family: 'courier new', monospace; font-size: 1em; }
 pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; }
@@ -149,7 +157,8 @@ nav a:hover, nav a:visited{
 }
 
 nav a:hover{
-	text-decoration:underline;
+	text-decoration:none;
+	background-color: #f5b90b;	
 }
 
 /* ==============
@@ -215,6 +224,11 @@ nav a:hover{
 		padding:25px 2%;
 		margin-bottom:0;
 	}
+	nav a:hover {
+		text-decoration: none;
+	
+	}
+
 	
 	nav li:first-child a{ margin-left:0;  }
 	nav li:last-child  a{ margin-right:0; }
@@ -236,7 +250,9 @@ nav a:hover{
 /* ====================
     WIDE: CSS3 Effects
    ==================== */
-
+   #main {
+   	width: 60%;
+   }
 	#header-container,
 	#main aside{
 		-webkit-box-shadow:0 5px 10px #aaa;

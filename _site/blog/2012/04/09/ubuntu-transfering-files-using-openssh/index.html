@@ -1,0 +1,165 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width" />
+
+	
+	<title>Ubuntu: Transfering files using openSSH | Mohammed Habib - in.sane</title>
+	
+	<meta name="author" content="Ryan Tell">
+	<meta name="description" content="Ryan Tell is an experimental electronic musician from Milwaukee, Wisconsin.">
+
+	<link href="/public/css/style.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<link href="/public/css/normalize.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<link rel="stylesheet" href="/public/css/ie.css" type="text/css" media="screen">
+	<![endif]-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="/public/js/vendor/modernizr-2.6.1.min.js"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-28591116-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+</head>
+
+<html>
+
+	<body>
+
+		<div class="container">
+			<div id="header-container">
+	<header class="wrapper clearfix">
+		<div class="left">
+			<img src="/public/img/me.jpg" class="me">
+			<h1 id="title">Mohammed Habib</h1>
+			<p class="caption">Beyond the borders of sanity</p>
+		</div>
+		<nav>
+		<ul>
+		<li><a href="/index.html">Home</a></li>
+		<li><a href="/about.html">About</a></li>
+		<li><a href="/projects.html">Projects</a></li>
+		</ul>
+		</nav>
+	</header>
+</div>
+
+			<div id="main-container">
+				<div id="main" class="wrapper clearfix">
+				<div class="column-12 post">
+	<h1><a href="/blog/2012/04/09/ubuntu-transfering-files-using-openssh" title="Ubuntu: Transfering files using openSSH">Ubuntu: Transfering files using openSSH</a></h1>
+	<p>
+For some reason, I wanted to transfer files from a remote machine using SSH. I wanted to use the default SSH client that comes with Ubuntu , which is openSSH. Actually, to transfer files between two machines, BOTH machines should have an SSH server program (I think), and ofcourse, at least one should have an SSH client. A part of the file transfer command got me confused, so i'm sharing this with you.
+</p>
+
+<h2>1 - Connecting to remote host</h2>
+<p>
+The first step is of course, connecting to the remote host. Go ahead and type the following command:
+</p>
+
+
+<pre>
+ssh USER@IP_ADDR_OR_HOSTNAME
+</pre>
+
+<p>and ofcourse, enter the password when prompted.<a href="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh11.png"><img class="wp-image-215 aligncenter" title="ssh1" src="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh11.png" alt="" width="605"  /></a></p>
+
+<p style="text-align: left;">Ofcourse, as you can see, we now have a remote terminal to the machine so any command is invoked on the local machine (pretty cool!)
+</p>
+
+  <a href="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh2.png"><img class="wp-image-211 aligncenter" title="ssh2" src="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh2.png" alt="" width="605" /></a>
+
+
+<h2>2--Set up local Server for file transfer</h2>
+<p>
+Now you should probably set up a local SSH server if you don't already have one. You can use the openSSH-server. on your same local ubuntu machine, type:
+</p>
+
+<pre>
+sudo apt-get install openssh-server
+</pre>
+
+<p><a href="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh3.png"><img class="wp-image-212 aligncenter" title="ssh3" src="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh3.png" alt="" width="590"  /></a></p>
+
+<h2>3 - Transferring a file!</h2>
+<p>
+Okay this is where it kind of gets confusing. To transfer files, you use the <strong>scp command.</strong> The syntax of the command is:
+</p>
+
+<pre>
+scp  USER@IP/HOSTNAME:SOURCE_FILE   USER@IP:DESTINATION_FILE
+</pre>
+
+
+<p>
+The user@IP part is optional, if omitted,  openssh will consider it as the "local machine" -- and this is where i got confused! I thought "local" meant MY machine, but it turns out "local" means the machine that you're SSH'ing into! You'll get the picture with the following examples
+</p>
+
+<p>
+Let's say I want to transfer a file To the machine i'm sitting at now:
+</p>
+
+<pre>
+scp Cookies.binarycookies mohammed@192.168.1.2:Desktop/
+</pre>
+
+<p><a href="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh4.png"><img class="wp-image-213 aligncenter" title="ssh4" src="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh4.png" alt="" width="607"  /></a></p>
+
+<p>
+Notice that I didn't mention the user@ip for the first argument: DUH, It's because we're transfering FROM that machine. Also, the file path given is RELATIVE to the current path.
+</p>
+
+<p>
+For the second argument, I mentioned, user@IP:PATH . This path is relative to the HOME directory on MY machine (this is important!). Absolute paths are also allowed.
+</p>
+
+<p>
+NOW, let's try doing the apposite: Transfer a file from my machine to the SSH'ed-into machine ;)
+</p>
+
+<pre>
+scp  mohammed@192.168.1.2:Desktop/test/a.jpg Cookies/
+</pre>
+
+<p><a href="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh5.png"><img class="wp-image-214" title="SSH5" src="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh5.png" alt="" width="606"  /></a></p>
+I hope you get the picture now! If not, please comment bellow. You can find more information <a href="http://pelican.rsvs.ulaval.ca/mediawiki/index.php/Remote_login_and_file_transfer_with_OpenSSH#File_transfer">here</a>
+
+	<p class="back-arrow"><a href="/">&larr; Back</a></p>
+
+
+
+
+
+</div>
+				</div> <!-- #main -->
+			</div> <!-- #main-container -->
+
+
+			<footer class="row">
+	<div id="footer-container">
+		<footer class="wrapper">
+			<p>This site is hosted on <a href="https://github.com/moehabib/moehabib.github.com">github</a> and uses <a href="http://jekyllrb.com/">Jekyll</a>. Template is based on <a href="http://initializr.com/">initializr</a></p>
+		</footer>
+	</div>
+</footer>
+		</div>
+
+	</body>
+
+</html>

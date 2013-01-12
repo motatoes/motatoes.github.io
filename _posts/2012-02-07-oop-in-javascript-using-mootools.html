@@ -1,0 +1,176 @@
+---
+layout: post
+title: OOP in Javascript using MooTools
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _yoast_wpseo_linkdex: '0'
+---
+<h2>Why?</h2>
+<p>
+I'm not an expert JS coder/frontend engineer, but I'd love to be one someday. Maybe for some smaller programs, modular programs with split apart functions might work. But alas, this may not be the case in larger scale programs. I noticed this while working on my <a title="senior" href="http://jz.sanddevelopers.com/" target="_blank">senior project</a>.
+</p>
+
+<p>
+Things may be nice and good on the small scale, but as they get larger, it gets less nice. It doesn't get nice at all. The problem is that sometimes one writes functions that have nothing to do with the overall program, but act like "helper" functions to other functions ... or "metafunctions". It is at cases like these that one could make use of <em>encapsulation</em> provided by object-oriented programs. This and other reasons might be inspirations to adapting OO JS.
+</p>
+
+<h2>OOP in pure Javascript</h2>
+<p>
+If we assume that OO programming is in essence, <em>classes</em> and <em>inheritance</em>, then Javascript does not directly support them. One can <em>simulate</em> these using what they call <em>prototypal inheritance. </em>I don't know much about the subject, but I've done some reading.
+</p>
+
+<p>
+After reading parts of chapter 8 of<em><a href="http://eloquentjavascript.net/"> Eloquent Javascript</a>, (awesome book, by the way), </em>I started thinking: "Why can't someone just create and object called "class" so that one can write something like :
+</p>
+
+
+<pre>
+
+var Person = new Class({
+
+....//methods and attributes
+
+});
+</pre>
+
+<p>
+But I was right, some Javascript frameworks do support this by default.MooTools is one of them.  So if you're looking for a quick and dirty way to write object-oriented programs in Javascript , <a href="http://mootools.net" target="_blank">mootools</a> is the way to go. Much talking, time for some juice ;)
+</p>
+
+<h2>Classes in Mootools</h2>
+<p>
+<a href="http://mootools.net/docs/core/Class/Class">The official Mootools documentation</a> provides a great introduction to the Class object in their framework. This post is more like a repitition, while stressing on why we need OO JS.
+</p>
+
+<p>
+Before digging in, lets take a look at what we need out of OOP. Personally, what I need is a simple way to define <em>classes</em>, <em>support for constructors</em> and <em>overloading</em>, and <em>inheritance</em>. I skipped out association and aggregation because it seems by default, since one of the members of the Class could be another object .. which is sufficient to achieve the two. We will now take a look at the above features in MooTools
+</p>
+
+<h3>Defining a class</h3>
+<p>
+One can define a new class as follows
+</p>
+
+
+<pre>
+var Person = new Class ({
+
+//rest of class
+
+});
+
+//creating an object
+
+var p1 = new Person();
+</pre>
+
+<h3>Adding default constructor</h3>
+<p>
+As follows:
+</p>
+
+<pre>
+var Person = new Class ({
+
+  //constructor
+
+  initialize: function(name, age) {
+
+  this.name = name;
+
+  this.age = age;
+
+  }
+
+});
+</pre>
+
+<h3>Constructor overloading</h3>
+<p>
+Overloading is a JS thing, not mootools:
+</p>
+
+<pre>
+var Person = new Class ({
+//constructor
+initialize: function(name, age) {
+
+if (name) //if not null
+
+   this.name = name;
+
+else
+
+   this.name = &quot;Ahmed&quot;; //default value
+
+if (age)
+
+   this.age = age;
+
+else
+
+   this.age = 19;
+}
+
+});
+</pre>
+
+<pre>
+I can't think of a cleaner way of doing this, so if someone can, please inform me.
+</pre>
+
+
+<h3>Inheritance</h3>
+<p>
+Let's say we want to inherit the class person by another Class, <em>Student</em>. We use the keyword <em><strong>Extends</strong>, </em>which "should be the first property in a class definition."
+</p>
+
+<pre>
+var Student = new Class({
+
+Extends: Person,
+
+initialize: function(name,age,gpa)
+
+   this.parent(name,age); //call parent constructor
+
+   this.gpa = gpa;
+
+});
+</pre>
+
+
+<h3>Adding other functions</h3>
+<p>
+Adding other methods (functions to the class) is rather simple:
+</p>
+
+
+<pre>
+var Student = new Class({
+
+Extends: Person,
+
+initialize: function(name,age,gpa) {
+
+this.parent(name,age); //call parent constructor
+
+this.gpa = gpa;
+},
+//********** addtogpa method
+addToGpa: function(v) {
+   this.gpa += v;
+  }
+});
+</pre>
+
+<h3>More details</h3>
+<p>
+For more details, consult their <a href="http://mootools.net/docs/core/Class/Class">official documentation</a>. If you have any comments about the tutorials, please say them bellow.  Happy coding !
+</p>
+

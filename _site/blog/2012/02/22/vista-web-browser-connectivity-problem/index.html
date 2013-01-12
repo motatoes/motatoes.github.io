@@ -1,0 +1,106 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width" />
+
+	
+	<title>Vista Web browser connectivity problem | Mohammed Habib - in.sane</title>
+	
+	<meta name="author" content="Ryan Tell">
+	<meta name="description" content="Ryan Tell is an experimental electronic musician from Milwaukee, Wisconsin.">
+
+	<link href="/public/css/style.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<link href="/public/css/normalize.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<link rel="stylesheet" href="/public/css/ie.css" type="text/css" media="screen">
+	<![endif]-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="/public/js/vendor/modernizr-2.6.1.min.js"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-28591116-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+</head>
+
+<html>
+
+	<body>
+
+		<div class="container">
+			<div id="header-container">
+	<header class="wrapper clearfix">
+		<div class="left">
+			<img src="/public/img/me.jpg" class="me">
+			<h1 id="title">Mohammed Habib</h1>
+			<p class="caption">Beyond the borders of sanity</p>
+		</div>
+		<nav>
+		<ul>
+		<li><a href="/index.html">Home</a></li>
+		<li><a href="/about.html">About</a></li>
+		<li><a href="/projects.html">Projects</a></li>
+		</ul>
+		</nav>
+	</header>
+</div>
+
+			<div id="main-container">
+				<div id="main" class="wrapper clearfix">
+				<div class="column-12 post">
+	<h1><a href="/blog/2012/02/22/vista-web-browser-connectivity-problem" title="Vista Web browser connectivity problem">Vista Web browser connectivity problem</a></h1>
+	<a href="http://www.sanddevelopers.com/wp-content/uploads/2012/02/ping.gif"><img class="alignright size-medium wp-image-174" title="ping" src="http://www.sanddevelopers.com/wp-content/uploads/2012/02/ping-300x161.gif" alt="" width="300" height="161" /></a>A couple of days ago, my dad's laptop ran into a browser connectivity problem. Well it turned out being a rather common problem in windows vista -- as I later came to know.
+The problem simply stated is: although the machine is connected to the Internet, browsers and some other applications are unable to display pages and content. I know it's connected because when I try to ping websites, the ping succeeds! Rather frustrating! And it's funny because the application is already added as an exception in windows firewall.
+<h2>The solution that worked - Removing Norton</h2>
+So we have a blocked outgoing port, as it seems. Well, after some googling around, I found a<a title="suffer" href="http://social.technet.microsoft.com/Forums/en-US/itprovistaie/thread/2c31cb4e-119b-443b-8058-099106d84435/" target="_blank"> long thread of people suffering</a> from the same issue.
+Lots of solutions have been posted, but this is the one that worked for me. It seems like norton antivirus was blocking the port....
+You might try it first, and of it doesn't work, go to the thread and try out the other workouts. Follow <a title="Norton removal" href="http://service1.symantec.com/Support/tsgeninfo.nsf/docid/2005033108162039" target="_blank">this link</a>, download Norton remover, and run it on the vista computer to remove Norton.
+<h2>The solutions that didn't work</h2>
+There are other solutions posted on that thread. If removing Norton doesn't work, you might as well try these:
+<ul>
+	<li><a href="http://www.mydigitallife.info/2007/06/18/repair-and-reset-windows-vista-tcpip-winsock-catalog-corruption/" target="_blank">Reset windows tcpip winsock</a></li>
+	<li><a href="http://www.wintuts.com/How-to-uninstall-Windows-Vista-updates">Uninstall update KB963027</a></li>
+	<li>Uninstall the following updates: KB952004, KB956572 ,KB959426, KB960803, KB963027, KB905866. (see above link)</li>
+	<li>Uninstall ZoneAlarm (free edition) If you have it installed</li>
+	<li>Add a firewall exception to your browser (if you don't already have one), or turn off your firewall just to test.</li>
+</ul>
+I hope this post helped with this frustrating issue. Wish you all the best. Cheers
+
+	<p class="back-arrow"><a href="/">&larr; Back</a></p>
+
+
+
+
+
+</div>
+				</div> <!-- #main -->
+			</div> <!-- #main-container -->
+
+
+			<footer class="row">
+	<div id="footer-container">
+		<footer class="wrapper">
+			<p>This site is hosted on <a href="https://github.com/moehabib/moehabib.github.com">github</a> and uses <a href="http://jekyllrb.com/">Jekyll</a>. Template is based on <a href="http://initializr.com/">initializr</a></p>
+		</footer>
+	</div>
+</footer>
+		</div>
+
+	</body>
+
+</html>

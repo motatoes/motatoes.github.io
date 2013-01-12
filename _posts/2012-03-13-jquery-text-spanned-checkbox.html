@@ -1,0 +1,65 @@
+---
+layout: post
+title: ! 'Jquery: Text spanned checkbox'
+tags:
+- JQuery
+- Tutorial
+status: publish
+type: post
+published: true
+meta:
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _yoast_wpseo_linkdex: '0'
+---
+I'm not sure what they call this, but it's best shown with a demo. <a href="http://sanddevelopers.com/samples/textspansample.html" target="_blank">See here</a>. The upper one is what I want to achieve, the lower one is a bad bad pampered child.
+
+I'm not sure if there's an easier way of doing this, but I achieved this effect using a small JQuery script.
+<h2>The markup</h2>
+The markup is just a form with a checkbox. But we added a &lt;span&gt; around the checkbox to be used by the script. Any checkbox with this span element will have the same effect. Put this between your &lt;body&gt; tags
+
+[html]
+
+&lt;form method=&quot;post&quot; action=&quot;#&quot;&gt;
+&lt;span class=&quot;checkboxarea&quot;&gt;
+&lt;input type=&quot;checkbox&quot; name=&quot;rem&quot;  /&gt;Checkbox description goes here
+&lt;/span&gt;
+&lt;/form&gt;
+
+[/html]
+<h2>The CSS</h2>
+You don't need css really, but you probably want to have the cursor as a pointer on the text, not a text cursor. Add the following CSS rule:
+
+[css]
+
+.checkboxarea {cursor: default}
+
+[/css]
+<h2>The script</h2>
+Time for the JQuery script! First ofcuorse, you need to import the jQuery library. Add this between your &lt;head&gt; tags.
+
+[js]
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js&quot;&gt;&lt;/script&gt; &lt;!-- jquery --&gt;
+
+[/js]
+
+Finally, add the following jQuery script either inline or in a seperate file:
+
+[js]
+
+$(window).ready(function() {
+$(&quot;.checkboxarea&quot;).click(function() {
+$(this).find(&quot;input[type=checkbox]&quot;).each(function() {
+this.checked = !this.checked
+})
+});
+$(&quot;.checkboxarea &gt; input[type=checkbox]&quot;).click(function(event) {event.stopPropagation();} );
+
+});
+
+[/js]
+
+And that's it ! It should work fine now. <a href="http://sanddevelopers.com/samples/textspansample.html" target="_blank">Here's the demo file for you.</a>
+
+_happy coding

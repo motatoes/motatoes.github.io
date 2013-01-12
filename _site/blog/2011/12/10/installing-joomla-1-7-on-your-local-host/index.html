@@ -1,0 +1,223 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width" />
+
+	
+	<title>Installing Joomla 1.7 on your local host | Mohammed Habib - in.sane</title>
+	
+	<meta name="author" content="Ryan Tell">
+	<meta name="description" content="Ryan Tell is an experimental electronic musician from Milwaukee, Wisconsin.">
+
+	<link href="/public/css/style.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<link href="/public/css/normalize.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<link rel="stylesheet" href="/public/css/ie.css" type="text/css" media="screen">
+	<![endif]-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="/public/js/vendor/modernizr-2.6.1.min.js"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-28591116-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+</head>
+
+<html>
+
+	<body>
+
+		<div class="container">
+			<div id="header-container">
+	<header class="wrapper clearfix">
+		<div class="left">
+			<img src="/public/img/me.jpg" class="me">
+			<h1 id="title">Mohammed Habib</h1>
+			<p class="caption">Beyond the borders of sanity</p>
+		</div>
+		<nav>
+		<ul>
+		<li><a href="/index.html">Home</a></li>
+		<li><a href="/about.html">About</a></li>
+		<li><a href="/projects.html">Projects</a></li>
+		</ul>
+		</nav>
+	</header>
+</div>
+
+			<div id="main-container">
+				<div id="main" class="wrapper clearfix">
+				<div class="column-12 post">
+	<h1><a href="/blog/2011/12/10/installing-joomla-1-7-on-your-local-host" title="Installing Joomla 1.7 on your local host">Installing Joomla 1.7 on your local host</a></h1>
+	<p>
+Joomla! (The exclamation mark is mandatory) is among the many famous web <em>Content Management Systems</em> out there. Web CMS gives you (almost) full control over your web content and hence, your website. You can consider it a website builder ... an extendible website builder. Extendible in the sense that you can place extra <em>modules </em>
+and such.
+</p>
+
+
+<p>
+If you decide to chose Joomla, it would be preferable to first build you website and test it locally before deploying to the general public. In this tutorial, I will walk you through the process of installing Joomla! on your local machine.I'll be using Joomla! 1.7 for this tutorial, but it doesn’t matter much really.
+</p>
+
+<p>
+<strong>Step 1 - Installing apache/mysql (XAMPP)</strong>
+</p>
+
+<p>
+Joomla was written in PHP, and to test PHP files, you need apache server, to run your PHP scripts.Joomla! also requires mysql server for your database backend, to store the content of your site and other site-related data. Fortunately, there is a package called XAMPP groups all of the above together in a single package. So first, we need to install XAMPP, and make sure that it works. Try this <a title="Install xampp" href="http://blackhatnetwork.com/BHN-SEO-Board/showthread.php/65-TUTORIAL-Installing-Xampp-Video-Walkthrough-for-Noobs" target="_blank">walkthrogh</a>.
+</p>
+
+<p>
+Note: sometimes a machine restart is required to make the local server work on your <em>http://localhost</em> .
+</p>
+
+<p>
+<strong>Step 2 – Downloading Joomla!</strong>
+</p>
+
+<p>
+The next step, ofcourse, is to download Joomla! Go ahead and download the latest version from <a href="http://www.joomla.org/">http://www.joomla.org</a> . Now unpack the zip file. Next, you need to copy that unzipped folder to your <em>htdocs</em> (&lt;PATH YOU YOUR XAMPP FOLDER&gt;/htdocs) folder, and rename it to something shortet (&lt;yoursitename&gt;, or something).
+</p>
+
+<p>
+<strong>Step 3 – Creating a database</strong>
+</p>
+
+<p>
+Joomla! needs to interact with a database to create its tables and save the current site state. You need to create a database. You can create a mysql database using the phpmyadmin interface that comes packaged with XAMPP. To access phpmyadmin, open &lt;HREF&gt;<em>http://localhost/phpmyadmin&lt;/HREF&gt;</em> in your browser. You should see an interface similar to the one in the figure. Now enter a database name  and press enter to create the database. There is no restriction on the database name, you can call it anything you want (anything that you can remember).
+</p>
+
+<img title="step3" src="http://i56.tinypic.com/14w7nlz.png" alt=""  />
+
+<p>
+<strong>Step 4 – Joomla! browser installation</strong>
+</p>
+
+<p>
+This is the fun part. It gets exciting now. You need visit your joomla! installation via your browser. Access <em><a href="../../%3cNAME_OF_THE_FOLDER_YOU_COPIED_IN_STEP_2%3e/">http://localhost/&lt;NAME_OF_THE_FOLDER_YOU_COPIED_IN_STEP_2&gt;/</a>. </em>You should be redirected to the initial Joomla! installation screen. It should look something like this:
+</p>
+
+
+
+<img title="step 4" src="http://i53.tinypic.com/2mgnvxx.png" alt="" />
+
+<p>
+You can now  begin the installation process.
+</p>
+
+<p>
+1- Select your preferred language
+</p>
+
+<img title="step 4" src="http://i53.tinypic.com/2mgnvxx.png" alt="" />
+
+<p>
+2- This is just a sanity check phase. You can pretty much go next, since everything is configured well if you’re using Xampp
+</p>
+
+
+
+<img title="step4-2" src="http://i51.tinypic.com/2concpd.jpg" alt="" />
+
+<p>
+<strong>3- </strong>Click next.. unless you’re interested in reading the GNU license , its interesing.
+</p>
+
+<img title="step4-3" src="http://i53.tinypic.com/1r9mb9.jpg" alt=""  />
+
+
+<p>
+4- Database connection! Fill in localhost for the hostname, the username is usually root and no password for Xampp (unless you changed that). Enter the name of the database you create in step 3
+</p>
+
+
+<img title="step4-4" src="http://i54.tinypic.com/2dj3o0l.png" alt=""  />
+
+<p>
+<strong>5- </strong>you can skip this step, go ahead and click next.
+</p>
+
+<img title="step4-5" src="http://i55.tinypic.com/ipb9n4.png" alt="" />
+
+<p>
+6- Final step, enter your administrative panel username/password, your sitename. Create sample data too.
+</p>
+
+
+<img title="step4-6" src="http://i52.tinypic.com/2vdodag.png" alt="" />
+
+<p>
+Finishing up, you have to delete your installation folder. The last step is to login to your administrative panel and view your sample site. The site should be located at:
+</p>
+
+<p>
+<a href="../../%3cNAME_OF_YOUR_JOOMLA_FOLDER">http://localhost//NAME_OF_YOUR_JOOMLA_FOLDER</a>
+</p>
+
+<p>
+Your administrative folder should be located at:
+</p>
+
+<p>
+<a href="../../%3cNAME_OF_YOUR_JOOMLA_FOLDER%3e/administrator">http://localhost/&lt;NAME_OF_YOUR_JOOMLA_FOLDER&gt;/administrator</a>
+</p>
+
+
+<p>
+If all works well, you should see screens similar to the bellow:
+</p>
+
+
+
+<img title="success1" src="http://i56.tinypic.com/fn4n4l.png" alt="" />
+
+
+
+<img title="success2" src="http://i56.tinypic.com/fn4n4l.png" alt="success2" />
+
+<p>
+<strong>Conclusion:</strong>
+</p>
+
+<p>
+Now, you can test and make changes to your joomla! locally. After you’re done, you’ll need to change your database settings from the panel and then upload the folder contents to your host. You also need to export your database from phpmyadmin and import it to your online database (using their database). I might write another How-to on how to do that. Until then, Cheers.
+</p>
+
+	<p class="back-arrow"><a href="/">&larr; Back</a></p>
+
+
+
+
+
+</div>
+				</div> <!-- #main -->
+			</div> <!-- #main-container -->
+
+
+			<footer class="row">
+	<div id="footer-container">
+		<footer class="wrapper">
+			<p>This site is hosted on <a href="https://github.com/moehabib/moehabib.github.com">github</a> and uses <a href="http://jekyllrb.com/">Jekyll</a>. Template is based on <a href="http://initializr.com/">initializr</a></p>
+		</footer>
+	</div>
+</footer>
+		</div>
+
+	</body>
+
+</html>

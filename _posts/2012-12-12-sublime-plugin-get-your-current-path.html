@@ -1,0 +1,38 @@
+---
+layout: post
+title: Sublime text 2 current path (plugin development)
+tags: []
+status: publish
+type: post
+published: true
+meta:
+  _yoast_wpseo_linkdex: '65'
+  _edit_last: '1'
+  _syntaxhighlighter_encoded: '1'
+  _yoast_wpseo_focuskw: Sublime text 2 current path
+  _yoast_wpseo_title: Sublime text 2 current path
+  _yoast_wpseo_metadesc: Sublime text 2 current path plugin development
+  _yoast_wpseo_meta-robots-noindex: '0'
+  _yoast_wpseo_meta-robots-nofollow: '0'
+  _yoast_wpseo_meta-robots-adv: none
+  _yoast_wpseo_bctitle: ''
+  _yoast_wpseo_sitemap-include: ! '-'
+  _yoast_wpseo_sitemap-prio: ! '-'
+  _yoast_wpseo_canonical: ''
+  _yoast_wpseo_redirect: ''
+---
+<p>
+Just a quick tip to find your sublime text 2 current path. If you ever find yourself writing a sublime plugin and want to get the current path, DO NOT use <em><strong>os.</strong><strong>getcwd</strong></em><strong> </strong>, it just doesn't work, and returns your system32 windows path. Instead, you should use the following method supplied by the sublime api to get the path to the packages folder, and then append to it the name of your package, and you're good to go:
+</p>
+
+<pre>
+import sublime
+#############
+dir = sublime.packages_path()
+sphinxdir = os.path.join(dir, 'NAME_OF_YOUR_PACKAGE')
+</pre>
+
+
+<p>
+hope this spares some hours of frustration.
+</p>

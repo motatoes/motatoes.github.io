@@ -1,0 +1,257 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width" />
+
+	
+	<title>Deploying Joomla! to your webhost site | Mohammed Habib - in.sane</title>
+	
+	<meta name="author" content="Ryan Tell">
+	<meta name="description" content="Ryan Tell is an experimental electronic musician from Milwaukee, Wisconsin.">
+
+	<link href="/public/css/style.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<link href="/public/css/normalize.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<link rel="stylesheet" href="/public/css/ie.css" type="text/css" media="screen">
+	<![endif]-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="/public/js/vendor/modernizr-2.6.1.min.js"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-28591116-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+</head>
+
+<html>
+
+	<body>
+
+		<div class="container">
+			<div id="header-container">
+	<header class="wrapper clearfix">
+		<div class="left">
+			<img src="/public/img/me.jpg" class="me">
+			<h1 id="title">Mohammed Habib</h1>
+			<p class="caption">Beyond the borders of sanity</p>
+		</div>
+		<nav>
+		<ul>
+		<li><a href="/index.html">Home</a></li>
+		<li><a href="/about.html">About</a></li>
+		<li><a href="/projects.html">Projects</a></li>
+		</ul>
+		</nav>
+	</header>
+</div>
+
+			<div id="main-container">
+				<div id="main" class="wrapper clearfix">
+				<div class="column-12 post">
+	<h1><a href="/blog/2012/01/06/deploying-joomla-to-your-webhost-site" title="Deploying Joomla! to your webhost site">Deploying Joomla! to your webhost site</a></h1>
+	<p>
+In my <a href="http://www.sanddevelopers.com/?p=28">,previous tutorial </a> I showed you how to install joomla on your localhost.
+</p>
+<p>
+I didn't, however, who you how to deploy it to your host from there on (after testing).This is why this turotial exists.
+</p>
+
+<h3>Preliminaries:</h3>
+<p>
+So you after playing around and testing, you finally decided you're done withyour site. you want to deploy to the public!
+</p>
+
+<p>
+Well I'm assuming you have a domain name and a webhost.that supports PHP and mysql. This is usually true, there are even <a href="http://www.zymic.org/">free</a> hosts that provide these services.
+</p>
+
+<p>
+<strong>Getting started:</strong>
+</p>
+
+<p>
+Okay, so you have the above, now it's time to get started with the deploying process:
+</p>
+<p>
+You need to upload two things to your host.
+</p>
+<p>
+1) The Joomla! Database.
+</p>
+<p>
+2) You Joomla! Folder (The Htdocs folder)
+</p>
+<p>
+We're going to start with the database:
+</p>
+<p>
+Go ahead and access http://localhost/phpmyadmin from your browser. You see the PHP my admin screen as shown below:
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/1.png" alt="undefined" align="none" />
+
+<p>
+Locate your database from the left sidebar and click on it.Now you can see all your database tables.
+</p>
+
+<p>
+Click on "export" on the top bar:
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/2.png" alt="phpmyadmin" align="none" />
+
+<p>
+You don't need to edit any settings on the next screen, just go ahead and click "go"
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/3.png" alt="undefined" align="none" />
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/4.png" alt="phpmyadmin" align="none" />
+
+<p>
+You can now download the .sql file and save it anywhere.
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/5.png" alt="export" align="none" />
+
+<p>
+Now you need logon to
+your host and access your online hosting panel.
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/6.png" alt="export4" align="none" />
+
+<p>
+First we need to create a database. Unfortunately, most shared hosting services
+force a prefix infront of the database name, &lt;SOMETHING&gt;_&lt;your_DB_name&gt;. Unfortunately
+</p>
+
+<p>
+we didn't add that prefix to our database name. But there is a fix luckily.
+Anyhow, you need to add a database(with the prefix). In my panel , you add it
+from the "mySQL Databases" icon:
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/9.png" alt="undefined" align="none" />
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/10.png" alt="undefined" align="none" />
+
+<p>
+You also need to create a user for that database, and add a username
+and a password for it:
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/11.png" alt="undefined" align="none" />
+
+<p>
+Now you need to change the database name in the SQL file you downloaded from your
+Open the file and edit it , so open it with your favourite text editor, you'lll
+see something like this :
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/12.png" alt="undefined" align="none" />
+
+<p>
+Now change the name of the database, to the name we changed online (with the prefix)
+Don't forget to save the file.
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/13.png" alt="undefined" align="none" />
+
+<p>
+Next, access your online PHPmyadmin panel, and CLICK on the database name you created,
+then Import the file:
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/14.png" alt="undefined" align="none" />
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/15.png" alt="undefined" align="none" />
+
+<p>
+If all goes well, you should see something like this:
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/16.png" alt="undefined" align="none" />
+
+<p>
+Now you have the database, the next step is to change settings from the joomla! panel
+to make it work with the uploaded database. First, we copy the folder
+that we have in the htdocs folder, to keep it safe. Rename the new
+folder to anything you want.
+</p>
+
+<p>
+Now open the COPIED folder using your windows explorer (or equivalent):
+&lt;PATH_TO_YOU_XAMPP_FOLDER&gt;/&lt;Copied_folder&gt;
+</p>
+
+<p>
+find a file in that folder called 'configuration.php', and open it with your preferred
+text editor. You should see something like this:
+</p>
+
+<img title="" src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Joomla%20deployment/17.png" alt="undefined" align="none" />
+
+<p>
+You need to change the following variable values from the file. Change them to
+reflect the changes in the database name, username and password (as highlighted above)
+</p>
+
+<p>
+Change only the values between the single quotes.
+</p>
+
+<p>
+You're almost done now, all you need to do is upload the CONTENTS of your folder
+to your site, its important to upload the contents and not the folder.
+</p>
+
+<p>
+The easiest way to do this is using an FTP client. You can use &lt;HREF&gt;filezilla&lt;/HREF&gt; to connect
+to your host FTP, or simply type FTP://&lt;SITENAME&gt;.com in your windows explorer
+</p>
+
+<p>
+And you're done! Your joomla site has now been deployed, and you should see it
+when you visit yoursitename.com. That's all for now folks, until next tutorial.
+</p>
+
+
+	<p class="back-arrow"><a href="/">&larr; Back</a></p>
+
+
+
+
+
+</div>
+				</div> <!-- #main -->
+			</div> <!-- #main-container -->
+
+
+			<footer class="row">
+	<div id="footer-container">
+		<footer class="wrapper">
+			<p>This site is hosted on <a href="https://github.com/moehabib/moehabib.github.com">github</a> and uses <a href="http://jekyllrb.com/">Jekyll</a>. Template is based on <a href="http://initializr.com/">initializr</a></p>
+		</footer>
+	</div>
+</footer>
+		</div>
+
+	</body>
+
+</html>

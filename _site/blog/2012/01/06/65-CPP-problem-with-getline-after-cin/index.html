@@ -1,0 +1,202 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width" />
+
+	
+	<title>C++ problem with getline after cin | Mohammed Habib - in.sane</title>
+	
+	<meta name="author" content="Ryan Tell">
+	<meta name="description" content="Ryan Tell is an experimental electronic musician from Milwaukee, Wisconsin.">
+
+	<link href="/public/css/style.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<link href="/public/css/normalize.min.css" media="screen, projection" rel="stylesheet" type="text/css" />
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<link rel="stylesheet" href="/public/css/ie.css" type="text/css" media="screen">
+	<![endif]-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="/public/js/vendor/modernizr-2.6.1.min.js"></script>
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-28591116-2']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+</head>
+
+<html>
+
+	<body>
+
+		<div class="container">
+			<div id="header-container">
+	<header class="wrapper clearfix">
+		<div class="left">
+			<img src="/public/img/me.jpg" class="me">
+			<h1 id="title">Mohammed Habib</h1>
+			<p class="caption">Beyond the borders of sanity</p>
+		</div>
+		<nav>
+		<ul>
+		<li><a href="/index.html">Home</a></li>
+		<li><a href="/about.html">About</a></li>
+		<li><a href="/projects.html">Projects</a></li>
+		</ul>
+		</nav>
+	</header>
+</div>
+
+			<div id="main-container">
+				<div id="main" class="wrapper clearfix">
+				<div class="column-12 post">
+	<h1><a href="/blog/2012/01/06/65-CPP-problem-with-getline-after-cin" title="C++ problem with getline after cin">C++ problem with getline after cin</a></h1>
+	<p>
+When people get bored, they usually do something fun. When I get bored, I write a new blog post.
+</p>
+
+<p>
+So yesterday, I was working on an assignment which was a C++ program. I had code similar to this:
+</p>
+
+<pre>
+ #include&lt;iostream&gt;
+ using namespace std;
+
+int main()
+ {
+ char x[10];
+ int y;
+
+cout&lt;&lt;&quot;Enter a number&quot;;
+ cin&gt;&gt;y;
+ cout&lt;&lt;&quot;Enter a string&quot;;
+ cin.getline(x,9);
+
+system(&quot;PAUSE&quot;);
+ }
+</pre>
+
+<p>
+Okay, so its pretty simple. I'm asking for a integer from the keyboard, and then i need a char[]. I'm using "getline" because I wanted to count spaces as well.
+</p>
+
+<p>
+Should have worked ... but it didn't:
+</p>
+
+<img src="http://i1081.photobucket.com/albums/j347/sanddevelopers/Problems%20with%20getline%20after%20cin%20Cpp/problem.jpg" alt="problem"  />
+
+<p>
+After I enter the number and press ENTER, it doesn't ask me for the next input.
+</p>
+<p>
+ZOMG what happened! Why does it skip the.getline and terminate the program? That question kept haunting me for a while... Until I found out why. I found the answer on this site called <a title="sol" href="http://mathbits.com/mathbits/compsci/APstrings/APgetline.htm" target="_blank">mathbits</a>
+</p>
+
+<p>
+So it turns out that the "cin" input steam function ignored the trailing "\n" in the input stream ...
+</p>
+
+<p>
+The getline on the other hand, keeps reading until it FINDS a "\n" ... See how that works?
+</p>
+<p>
+Since the previous "Cin" kept a trailing "\n", the getline found it and thought it was the end of the input!
+</p>
+
+<h4> Solution</h4>
+<p>
+The solution is well presented on <a title="sol" href="http://mathbits.com/mathbits/compsci/APstrings/APgetline.htm" target="_blank">mathbits </a>as well.
+</p>
+<h5>plan A</h5>
+<p>
+One solution is to use cin.ignore(100,'\n'). This ignores up to a 100 characters in the stream, until it meets a "\n" .
+</p>
+
+<pre>
+ #include&lt;iostream&gt;
+ using namespace std;
+
+int main()
+ {
+ char x[10];
+ int y;
+
+cout&lt;&lt;&quot;Enter a number: &quot;;
+ cin&gt;&gt;y;
+ cout&lt;&lt;&quot;Enter a string: &quot;;
+ cin.ignore(100,'\n');//!!!!!!!!!!!!!!!!!!!//
+ cin.getline(x,9);
+
+system(&quot;PAUSE&quot;);
+ }
+</pre>
+
+
+<h5>Plan B</h5>
+<p>
+Another solution is to use a dummy string variable to absorb the nasty \n :
+</p>
+
+<pre>
+ #include&lt;iostream&gt;
+ using namespace std;
+
+int main()
+ {
+ char x[10];
+ char dummy[2]; //!!!!!!!!!!!!!!!!!!!!!!//
+ int y;
+
+cout&lt;&lt;&quot;Enter a number: &quot;;
+ cin&gt;&gt;y;
+ cout&lt;&lt;&quot;Enter a string: &quot;;
+ cin.getline(dummy,1); //!!!!!!!!!!!!!!!!!!!!//
+ cin.getline(x,9);
+ cout&lt;&lt;x;
+ system(&quot;PAUSE&quot;);
+ }
+</pre>
+
+<p>
+Well done! You have now managed to overcome the \n getline problem.
+</p>
+
+
+	<p class="back-arrow"><a href="/">&larr; Back</a></p>
+
+
+
+
+
+</div>
+				</div> <!-- #main -->
+			</div> <!-- #main-container -->
+
+
+			<footer class="row">
+	<div id="footer-container">
+		<footer class="wrapper">
+			<p>This site is hosted on <a href="https://github.com/moehabib/moehabib.github.com">github</a> and uses <a href="http://jekyllrb.com/">Jekyll</a>. Template is based on <a href="http://initializr.com/">initializr</a></p>
+		</footer>
+	</div>
+</footer>
+		</div>
+
+	</body>
+
+</html>
