@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A #pdftribute to Aaron Swartz
+title: A pdftribute to Aaron Swartz
 tags: []
 status: publish
 type: post
