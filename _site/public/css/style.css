@@ -1,7 +1,6 @@
 /* HTML5 ✰ Boilerplate
  * ==|== normalize ==========================================================
  */
-
 article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
 audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
 audio:not([controls]) { display: none; }
@@ -218,7 +217,7 @@ nav a:hover{
 }
 	nav a{
 		float:left;
-		width:27%;
+		width:18%;
 		margin:0 1.7%;
 		padding:25px 2%;
 		margin-bottom:0;
@@ -273,7 +272,7 @@ nav a:hover{
 
 	nav{
 		float:right;
-		width:38%;
+		width:58%;
 	}
 
 /* ============
