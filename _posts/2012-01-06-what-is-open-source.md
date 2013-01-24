@@ -29,4 +29,4 @@ Free speech as in the right to say whatever you want about whomever you wish. In
 
 I hope this helps clarifies some of the aspects of open source. All above is my humble understandings of the subject. I hope to see you on the next blog post, until then.
 
-_Mohammed
+Mohammed

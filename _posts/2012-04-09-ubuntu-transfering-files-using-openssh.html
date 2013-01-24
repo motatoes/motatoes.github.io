@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  'Ubuntu: Transfering files using openSSH'
+title: ! 'Ubuntu: Transfering files using openSSH'
 tags: []
 status: publish
 type: post
@@ -62,12 +62,12 @@ Okay this is where it kind of gets confusing. To transfer files, you use the <st
 </p>
 
 {% highlight bash %}
-scp  USER@IP/HOSTNAME:SOURCE_FILE   USER@IP:DESTINATION_FILE
+scp  USER@IP/HOSTNAME:SOURCE_FILE   USER@IP:DESTINATION_FILE
 {% endhighlight %}
 
 
 <p>
-The user@IP part is optional, if omitted,  openssh will consider it as the "local machine" -- and this is where i got confused! I thought "local" meant MY machine, but it turns out "local" means the machine that you're SSH'ing into! You'll get the picture with the following examples
+The user@IP part is optional, if omitted,  openssh will consider it as the "local machine" -- and this is where i got confused! I thought "local" meant MY machine, but it turns out "local" means the machine that you're SSH'ing into! You'll get the picture with the following examples
 </p>
 
 <p>
@@ -93,7 +93,7 @@ NOW, let's try doing the apposite: Transfer a file from my machine to the SSH'ed
 </p>
 
 {% highlight bash %}
-scp  mohammed@192.168.1.2:Desktop/test/a.jpg Cookies/
+scp  mohammed@192.168.1.2:Desktop/test/a.jpg Cookies/
 {% endhighlight %}
 
 <p><a href="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh5.png"><img class="wp-image-214" title="SSH5" src="http://www.sanddevelopers.com/wp-content/uploads/2012/04/ssh5.png" alt="" width="606"  /></a></p>
