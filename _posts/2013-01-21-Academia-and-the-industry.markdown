@@ -2,7 +2,7 @@
 layout: post
 title: Academia and the industry year
 tags: []
-status: unpublish
+status: unpublished
 type: post
 published: true
 ---
