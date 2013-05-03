@@ -129,12 +129,17 @@ img.me:hover {
 }
 
 div.reach {
-	width: 100%;
+	width: 120px;
 	height: 40px;
-	text-align: center;
+	margin: 0 auto;
 
 }
-
+div.icon.twitter {
+	float: left;
+}
+div.icon.github {
+	float: right;
+}
 div.icon {
 	float: left;
 	width: 32px;
