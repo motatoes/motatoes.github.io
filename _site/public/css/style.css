@@ -129,9 +129,9 @@ img.me:hover {
 }
 
 div.reach {
-	width: 120px;
+	width: 100px;
 	height: 32px;
-	margin: 5px auto auto 5px;
+	margin: 5px auto;
 
 }
 
@@ -237,11 +237,6 @@ nav a:hover{
 		text-align: center;	
 	}
 
-	div.reach {
-		margin: 5px;
-		float: left;
-	}
-
 	nav a{
 		float:left;
 		width:18%;
@@ -283,6 +278,11 @@ nav a:hover{
 		-webkit-box-shadow:0 5px 10px #aaa;
 		   -moz-box-shadow:0 5px 10px #aaa;
 		        box-shadow:0 5px 10px #aaa;
+	}
+
+	div.reach {
+		margin: 5px;
+		float: left;
 	}
 	#header-container .left {
 		float: left;
