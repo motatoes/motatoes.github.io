@@ -71,9 +71,14 @@
 
 <script type="text/javascript">
 	jQuery(function($) {
-	    $('#terminal').terminal("json-rpc-service-demo.php", {
-	    login: false,
-	    greetings: "You are authenticated"});
+	    $('#terminal').terminal(function (command,term) {
+	    		 if (command == 'foo') {
+					term.push("asdsa")
+				}
+			},
+	   		login: false,
+	    	greetings: "mohammed@moe-pc"
+		);
     });
 </script>
 
@@ -102,6 +107,7 @@
 	  })();
 
 	</script>
+	<script src="/public/js/all.min.js"></script>
 	</body>
 
 </html>
