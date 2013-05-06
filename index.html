@@ -3,10 +3,59 @@ layout: layout
 title: Home
 slug: index
 ---
-{% for post in site.posts %}
+{% for post in paginator.posts %}
 <div class="column-12 post">
 	<h1><a href="{{ post.url}}" title="{{ post.title }}">{{ post.title }}</a></h1>
 	{{ post.summary | markdownify }}
 	<p class="read-arrow"><a href="{{ post.url }}">Learn more. &rarr;</a></p>
 </div>
 {% endfor %}
+
+<!-- Pagination links -->
+<ul id="post-pagination" class="pagination">
+
+  {% if paginator.previous_page %}
+  <li class="previous">
+    {% if paginator.previous_page == 1 %}
+    <a href="/">Previous</a>
+    {% else %}
+    <a href="/page{{paginator.previous_page}}">Previous</a>
+    {% endif %}
+  </li>
+  {% else %}
+  <li class="previous disabled">
+    <span>Previous</span>
+  </li>
+  {% endif %}
+
+  <!--<ul class="pages">-->
+    <li class="page">
+      {% if paginator.page == 1 %}
+      <span class="current-page">1</span>
+      {% else %}
+      <a href="/">1</a>
+      {% endif %}
+    </li>
+
+    {% for count in (2..paginator.total_pages) %}
+    <li class="page">
+      {% if count == paginator.page %}
+      <span class="current-page">{{count}}</span>
+      {% else %}
+      <a href="/page{{count}}">{{count}}</a>
+      {% endif %}
+    </li>
+    {% endfor %}
+  <!--</ul>-->
+
+  {% if paginator.next_page %}
+  <li class="next">
+    <a href="/page{{paginator.next_page}}">Next</a>
+  </li>
+  {% else %}
+  <li class="next disabled">
+    <span>Next</span>
+  </li>
+  {% endif %}
+
+</ul>
