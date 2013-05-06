@@ -246,18 +246,14 @@ ul.pagination li:first-child {
     margin-left:0px;
     }
      
-ul.pagination li a {
+ul.pagination li a,
+ul.pagination li span
+ {
     color:black;
     display:block;
     text-decoration:none;
     padding:7px 10px 7px 10px;
     }
-ul.pagination li span {
-    color:black;
-    display:block;
-    text-decoration:none;
-    padding:7px 10px 7px 10px;
-}
 
 /* C */
 ul.classC li a {
@@ -268,8 +264,17 @@ ul.classC li a {
     -webkit-border-radius:3px;
     border:solid 1px #DCDCDC;
     padding:6px 9px 6px 9px;
-    }
-     
+}
+ul.classC li span {
+    color:#707070;
+    background:#F0F0F0;
+    border-radius:3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border:solid 1px #DCDCDC;
+    padding:6px 9px 6px 9px;
+}
+
 ul.classC li {
     padding-bottom:1px;
     }
