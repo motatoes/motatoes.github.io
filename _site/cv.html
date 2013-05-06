@@ -73,8 +73,14 @@
 	jQuery(function($) {
 	    $('#terminal').terminal(function (command,term) {
 	    		 if (command == 'foo') {
-					term.push("asdsa")
+	    		 	term.echo('execute your command here');
+					term.push("asdsa");
+					
 				}
+				else {
+
+				}
+				return;
 			},
 			{
 		   		login: false,
