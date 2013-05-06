@@ -60,9 +60,22 @@
 			<div id="main-container">
 				<div id="main" class="wrapper clearfix">
 				<div class="column-12 post">
-	<h1>One day ...</h1>
-	<p>When i'm less lazy, i'll post my cv and acheivements in here</p>
+	<h1>Warning Recruiters: I'm absolutely useless. Except when "useless".replace("less","")</h1>
+	<p>I don't update my CV often, but you can download it by typing 'xpdf cv.pdf' bellow, or just <a href="https://dl.dropboxusercontent.com/u/22583048/mohammed_CV.pdf">click here</a></p>
+
+
+	<div id="terminal">
+	</div>
 </div>
+
+
+<script type="text/javascript">
+	jQuery(function($) {
+	    $('#terminal').terminal("json-rpc-service-demo.php", {
+	    login: true,
+	    greetings: "You are authenticated"});
+    });
+</script>
 
 				</div> <!-- #main -->
 			</div> <!-- #main-container -->
