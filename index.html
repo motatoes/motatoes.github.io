@@ -4,6 +4,7 @@ title: Home
 slug: index
 ---
 {% for post in paginator.posts %}
+
 <div class="column-12 post">
 	<h1><a href="{{ post.url}}" title="{{ post.title }}">{{ post.title }}</a></h1>
 	{{ post.summary | markdownify }}
