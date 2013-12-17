@@ -32,6 +32,6 @@ I don't have any published papers yet. I only have an M.Sc. mini-project report,
 [Semi-structural adaptive document image binarization - Mohammed Habib](https://dl.dropboxusercontent.com/u/22583048/habib-miniproject.pdf)
 
 
-**UPDATE (17/11/2013)**: summe thesis is now also online
+**UPDATE (17/11/2013)**: Thesis is now also online
 
 [Flood filling as a basis for document image binarization and ground-truthing](https://dl.dropboxusercontent.com/u/22583048/thesis.pdf)
