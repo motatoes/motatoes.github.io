@@ -7,7 +7,7 @@ slug: index
 
 <div class="column-12 post">
 	<h1><a href="{{ post.url}}" title="{{ post.title }}">{{ post.title }}</a></h1>
-        {% if post.summary %}} 
+        {% if post.summary %} 
 	  {{ post.summary | markdownify }}
         {% endif %}
 	<p class="read-arrow"><a href="{{ post.url }}">Learn more. &rarr;</a></p>
